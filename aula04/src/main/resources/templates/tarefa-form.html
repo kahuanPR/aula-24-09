@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Tarefa</title>
+</head>
+<body>
+    <h2>Formulário de Tarefa</h2>
+
+    <form method="post" th:object="${tarefa}" th:action="@{/tarefas/salvar}">
+        <input type="hidden" th:field="*{id}"/>
+
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" th:field="*{descricao}" required/><br/>
+
+        <label for="usuario">Usuário:</label>
+        <select id="usuario" th:field="*{usuario}" required>
+            <option value="" disabled selected>Selecione um usuário</option>
+            <option th:each="user : ${usuarios}" 
+                    th:value="${user.id}" 
+                    th:text="${user.nome}"></option>
+        </select><br/>
+
+        <label for="categoria">Categoria:</label>
+        <select id="categoria" th:field="*{categoria}" required>
+            <option value="" disabled selected>Selecione uma categoria</option>
+            <option th:each="cat : ${categorias}" 
+                    th:value="${cat.id}" 
+                    th:text="${cat.nome}"></option>
+        </select><br/>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <br/>
+
+    <a href="/tarefas">Voltar para Lista de Tarefas</a>
+</body>
+</html>

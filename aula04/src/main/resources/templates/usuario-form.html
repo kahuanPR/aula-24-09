@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Usuário</title>
+</head>
+<body>
+    <h2>Formulário de Usuário</h2>
+
+    <form method="post" th:object="${usuario}" th:action="@{/usuarios/salvar}">
+        <input type="hidden" th:field="*{id}"/>
+
+        <label>Nome:</label>
+        <input type="text" th:field="*{nome}"/><br/>
+
+        <label>Email:</label>
+        <input type="email" th:field="*{email}"/><br/>
+
+        <label>Senha:</label>
+        <input type="password" th:field="*{senha}"/><br/>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <br/>
+
+    <!-- Link para voltar à lista de usuários -->
+    <a href="/usuarios">Voltar para Lista de Usuários</a>
+</body>
+</html>
